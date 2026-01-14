@@ -4,13 +4,11 @@ import './TodoApp.css';
 
 export default function TodoApp() {
     
-    let [todos , setTodos] = useState([]);
     let [newTask, setNewTask] = useState("");
     let [count, setCount] = useState(0);
 
     let addNewTask = () => {
         setTodos([...todos, newTask]);
-        setCount(count + 1);
         setNewTask("");
     }
 
@@ -44,7 +42,7 @@ export default function TodoApp() {
                 &nbsp;&nbsp;
                 <button onClick={deleteAllTodoValue}>Delete All</button>
                 &nbsp;&nbsp;
-                <button onClick={setCount}>Total = {count}</button>
+                <button>Total = {todos.length}</button>
             </div>
             <ol className='todo-list-elements'> {
                 todos.map((todo, index) => {
