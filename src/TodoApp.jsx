@@ -4,8 +4,8 @@ import './TodoApp.css';
 
 export default function TodoApp() {
     
+    let [todos , setTodos] = useState([]);
     let [newTask, setNewTask] = useState("");
-    let [count, setCount] = useState(0);
 
     let addNewTask = () => {
         setTodos([...todos, newTask]);
@@ -18,7 +18,9 @@ export default function TodoApp() {
 
     let deleteTodoValue = () => {
         setTodos(todos.slice(0 , -1));
-        setCount(count - 1);
+        if(count > 0) {
+            setCount(count - 1);
+        }
     }
 
     let deleteAllTodoValue = () => {
