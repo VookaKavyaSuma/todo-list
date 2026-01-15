@@ -9,7 +9,11 @@ export default function TodoApp() {
     let [newTask, setNewTask] = useState("");
 
     let addNewTask = () => {
-        setTodos([...todos, {newTask , id : uuidv4()}]);
+        setTodos(
+            (prevTodos) => {
+                return [...prevTodos, {newTask , id : uuidv4()}]
+            }
+        );
         setNewTask("");
     }
 
@@ -26,6 +30,10 @@ export default function TodoApp() {
         setCount(0);
     }
 
+    let removeTodoValue = (id) => {
+        setTodos(() => todos.filter((prevTodos) => prevTodos.id != id));
+    }
+
     return (
         <div>
             <div className='todo-list-header'>
@@ -38,8 +46,6 @@ export default function TodoApp() {
                 &nbsp;&nbsp;
                 <button onClick={addNewTask}>Add</button>
                 &nbsp;&nbsp;
-                <button onClick={deleteTodoValue}>Delete</button>
-                &nbsp;&nbsp;
                 <button onClick={deleteAllTodoValue}>Delete All</button>
                 &nbsp;&nbsp;
                 <button>Total = {todos.length}</button>
@@ -50,6 +56,7 @@ export default function TodoApp() {
                         <div className='todo-list-items'  key={todo.id}>
                             <li>{todo.newTask}</li>
                             <input type="checkbox" className='todo-list-items-checkbox'/>
+                            <button onClick={() => removeTodoValue(todo.id)}>Delete</button>
                         </div>
                         )
                     }

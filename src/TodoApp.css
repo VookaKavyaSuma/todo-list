@@ -61,3 +61,12 @@
     justify-content: center;
     gap: 20px;
 }
+
+.todo-list-items button {
+    background-color: rgb(234, 173, 62);;
+    color: black;
+    border: black solid 2px;
+    height: 35px;
+    width: 90px;
+    border-radius: 10px;
+}
