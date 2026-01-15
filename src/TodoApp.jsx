@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import todoLogo from './assets/todoList.jpg';
 import './TodoApp.css';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function TodoApp() {
     
@@ -8,7 +9,7 @@ export default function TodoApp() {
     let [newTask, setNewTask] = useState("");
 
     let addNewTask = () => {
-        setTodos([...todos, newTask]);
+        setTodos([...todos, {newTask , id : uuidv4()}]);
         setNewTask("");
     }
 
@@ -18,9 +19,6 @@ export default function TodoApp() {
 
     let deleteTodoValue = () => {
         setTodos(todos.slice(0 , -1));
-        if(count > 0) {
-            setCount(count - 1);
-        }
     }
 
     let deleteAllTodoValue = () => {
@@ -36,7 +34,7 @@ export default function TodoApp() {
             </div>
             <div className='todo-options'>
                 <label htmlFor='todo-task' className='todo-options-label'><b>Task : </b></label>
-                <input type="text" placeholder="Enter your todo task" value={newTask} onChange={updateTodoValue} id='todo-task'/>
+                <input type="text" placeholder="Enter your todo task" value={newTask} onChange={updateTodoValue} className='todo-task'/>
                 &nbsp;&nbsp;
                 <button onClick={addNewTask}>Add</button>
                 &nbsp;&nbsp;
@@ -47,10 +45,10 @@ export default function TodoApp() {
                 <button>Total = {todos.length}</button>
             </div>
             <ol className='todo-list-elements'> {
-                todos.map((todo, index) => {
+                todos.map((todo) => {
                     return (
-                        <div className='todo-list-items'>
-                            <li key={index}>{todo}</li>
+                        <div className='todo-list-items'  key={todo.id}>
+                            <li>{todo.newTask}</li>
                             <input type="checkbox" className='todo-list-items-checkbox'/>
                         </div>
                         )
