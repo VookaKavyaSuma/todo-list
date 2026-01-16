@@ -35,7 +35,7 @@ export default function TodoApp() {
     }
 
     return (
-        <div>
+        <div className='todo-list-component'>
             <div className='todo-list-header'>
                 <img src={todoLogo} alt="Todo List Logo" className="todo-list-logo"/>
                 <h2 className='todo-list-heading'>Your Todo Task List</h2>
@@ -49,6 +49,15 @@ export default function TodoApp() {
                 <button onClick={deleteAllTodoValue}>Delete All</button>
                 &nbsp;&nbsp;
                 <button>Total = {todos.length}</button>
+            </div>
+            <div className='todo-options-small'>
+                <label htmlFor='todo-task' className='todo-options-label'><b>Task : </b></label>
+                <input type="text" placeholder=" Your task.." value={newTask} onChange={updateTodoValue} className='todo-task'/>
+                &nbsp;&nbsp;
+                <button onClick={addNewTask}>➕</button>
+                &nbsp;&nbsp;
+                <button onClick={deleteAllTodoValue}>❌</button>
+                &nbsp;&nbsp;
             </div>
             <ol className='todo-list-elements'> {
                 todos.map((todo) => {
